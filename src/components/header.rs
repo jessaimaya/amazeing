@@ -1,5 +1,5 @@
-use mogwai::prelude::*;
 use css_in_rust::*;
+use mogwai::prelude::*;
 
 use crate::theme::Theme;
 
@@ -9,17 +9,24 @@ pub fn render_header(tx_click: Transmitter<Event>) -> ViewBuilder<HtmlElement> {
         &rx_theme,
         false, // the intial value for is_red
         |is_light, _| {
-            let out = if *is_light { "light".into() } else { "dark".into() };
+            let out = if *is_light {
+                "light".into()
+            } else {
+                "dark".into()
+            };
             *is_light = !*is_light;
             out
         },
     );
     let style = match css_in_rust::Style::create(
         "header",
-        format!("
+        format!(
+            "
             color: white;
             background: {};
-                ",  Theme.background.light),
+                ",
+            Theme.background.light
+        ),
     ) {
         Ok(style) => style,
         Err(error) => {

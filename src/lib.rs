@@ -1,14 +1,13 @@
-use log::{Level, info};
+use log::{info, Level};
 use mogwai::prelude::*;
 use std::panic;
 use wasm_bindgen::prelude::*;
 
-mod theme;
-mod containers;
 mod components;
-use crate::theme::Theme;
+mod containers;
+mod theme;
 use crate::containers::*;
-
+use crate::theme::Theme;
 
 // When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
 // allocator.
@@ -56,10 +55,9 @@ pub fn main() -> Result<(), JsValue> {
 
     let mut grid = components::grid::Grid::new(20, 20);
     grid.binary_tree();
-    // info!("Grid: {:#?}", grid);
     info!("{}", grid);
-    
-    let gizmo = Gizmo::from(App{ clicks: 0 });
+
+    let gizmo = Gizmo::from(App { clicks: 0 });
     let view = View::from(gizmo.view_builder());
     view.run()
 }
